@@ -2,10 +2,14 @@ version: '2'
 services:
   metrics_collector:
     build: ./metrics_collector
+    command: python3 metrics_collector/main.py
     volumes:
       - ./metrics_collector/metrics_collector:/usr/src/metrics_collector/metrics_collector
 
   metrics_loader:
     build: ./metrics_loader
+    command: python3 metrics_loader/main.py
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - ./metrics_loader/metrics_loader:/usr/src/metrics_loader/metrics_loader
