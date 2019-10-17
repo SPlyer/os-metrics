@@ -1,0 +1,11 @@
+version: '2'
+services:
+  metrics_service:
+    build: ./metrics_collector
+    volumes:
+      - ./metrics_collector/metrics_collector:/usr/src/metrics_collector/metrics_collector
+
+  metrics_storer:
+    build: ./metrics_storer
+    volumes:
+      - ./metrics_storer/metrics_storer:/usr/src/metrics_storer/metrics_storer
