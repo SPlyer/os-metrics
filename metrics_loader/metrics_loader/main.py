@@ -22,7 +22,7 @@ class LoaderDaemon(Daemon):
         finally:
             self._db.disconnect()
 
-    def _init_logging(self):
+    def _init_logging(self) -> None:
         logger = logging.getLogger('ml')
         formatter = logging.Formatter(
             '%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
@@ -37,7 +37,7 @@ class LoaderDaemon(Daemon):
         sh.setFormatter(formatter)
         logger.addHandler(sh)
 
-    def _init_consumer(self):
+    def _init_consumer(self) -> None:
         self._consumer = KafkaConsumer(
             settings.KAFKA_TOPIC_NAME,
             auto_offset_reset="earliest",
@@ -49,7 +49,7 @@ class LoaderDaemon(Daemon):
             ssl_certfile=settings.KAFKA_SSL_CERT_FILE,
             ssl_keyfile=settings.KAFKA_SSL_KEY_FILE)
 
-    def _init_db(self):
+    def _init_db(self) -> None:
         self._db.bind(
             provider='postgres', 
             user=settings.POSTGRES_USER, 
@@ -60,7 +60,7 @@ class LoaderDaemon(Daemon):
         define_entities(self._db)
         self._db.generate_mapping(create_tables=True)
 
-    def run(self):
+    def run(self) -> None:
         signal.signal(signal.SIGTERM, self._handle_sigterm)
         signal.signal(signal.SIGINT, self._handle_sigterm)
 
@@ -78,7 +78,10 @@ class LoaderDaemon(Daemon):
 
 def main():
     d = LoaderDaemon(settings.DAEMON_PID_FILE)
-    d.run()
+    if settings.DAEMON:
+        d.start()
+    else:
+        d.run()
 
 
 if __name__ == '__main__':

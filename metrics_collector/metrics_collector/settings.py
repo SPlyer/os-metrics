@@ -18,6 +18,8 @@ DISK_USAGE_PATH = os.getenv('DISK_USAGE_PATH', '/')
 
 MACHINE_ID = os.getenv('MACHINE_ID', os.uname()[1])
 
+DAEMON = os.getenv('DAEMON', 'false') == 'true' # run in daemon mode
+
 DAEMON_PID_FILE = os.getenv('DAEMON_PID_FILE', '/var/run/metrics_collector.pid')
 
 DAEMON_LOGS_FILE = os.getenv(

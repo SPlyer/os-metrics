@@ -5,7 +5,6 @@ import logging
 from dataclasses import dataclass, asdict
 
 import linux_metrics as lm
-from kafka import KafkaProducer
 
 import settings
 
@@ -25,7 +24,7 @@ class MetricsRecord:
 
 class MetricsCollector:
 
-    def __init__(self, kafka_producer: KafkaProducer):
+    def __init__(self, kafka_producer):
         self.kafka_producer = kafka_producer
 
     def get_metrics(self) -> MetricsRecord:

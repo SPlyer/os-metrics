@@ -21,6 +21,8 @@ POSTGRES_PORT = os.getenv('POSTGRES_PORT', '25241')
 
 POSTGRES_DB = os.getenv('POSTGRES_DB', 'defaultdb')
 
+DAEMON = os.getenv('DAEMON', 'false') == 'true' # run in daemon mode
+
 DAEMON_PID_FILE = os.getenv('DAEMON_PID_FILE', '/var/run/metrics_loader.pid')
 
 DAEMON_LOGS_FILE = os.getenv(

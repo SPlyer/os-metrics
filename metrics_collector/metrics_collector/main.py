@@ -58,8 +58,10 @@ class CollectorDaemon(Daemon):
 
 def main() -> None:
     d = CollectorDaemon(settings.DAEMON_PID_FILE)
-    d.run()
-
+    if settings.DAEMON:
+        d.start()
+    else:
+        d.run()
 
 if __name__ == '__main__':
     main()
