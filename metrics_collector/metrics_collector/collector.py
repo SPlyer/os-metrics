@@ -62,4 +62,16 @@ class MetricsCollector:
 
     def run(self) -> None:
         while True:
-            self.send_metrics()
+            for _ in range(settings.MAX_RETRIES_ERRORS):
+                try:
+                    self.send_metrics()
+                except Exception as e:
+                    logger.error(f'Failed to send metrics: {e}', exc_info=True)
+                    time.sleep(30)
+                    continue
+                else:
+                    break
+            else:
+                logger.error('Too many errors, retried '
+                            f'{settings.MAX_RETRIES_ERRORS} times, exiting...')
+                break

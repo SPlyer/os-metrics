@@ -22,3 +22,5 @@ DAEMON_PID_FILE = os.getenv('DAEMON_PID_FILE', '/var/run/metrics_collector.pid')
 
 DAEMON_LOGS_FILE = os.getenv(
     'DAEMON_LOGS_FILE', '/var/log/metrics_collector.log')
+
+MAX_RETRIES_ERRORS = int(os.getenv('MAX_RETRIES_ERRORS', '20')) # max reties before exit
