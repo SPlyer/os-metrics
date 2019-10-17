@@ -2,8 +2,7 @@ import os
 
 path = os.path.dirname(os.path.abspath(__file__))
 
-KAFKA_SERVER = os.getenv('KAFKA_SERVER',
-                         'kafka-34f388bd-splyer-2eca.aivencloud.com:25243')
+KAFKA_SERVER = os.getenv('KAFKA_SERVER')
 KAFKA_SSL_KEY_FILE = os.getenv('KAFKA_SSL_KEY_FILE',
                                f'{path}/secret/service.key')
 KAFKA_SSL_CERT_FILE = os.getenv('KAFKA_SSL_CERT_FILE',
