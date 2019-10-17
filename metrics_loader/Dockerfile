@@ -10,5 +10,6 @@ RUN apt-get install -y \
 WORKDIR /usr/src/metrics_loader
 
 COPY metrics_loader/requirements.txt .
+COPY metrics_loader/requirements-test.txt .
 
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r requirements.txt -r requirements-test.txt
