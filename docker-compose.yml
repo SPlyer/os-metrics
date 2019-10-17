@@ -1,11 +1,11 @@
 version: '2'
 services:
-  metrics_service:
+  metrics_collector:
     build: ./metrics_collector
     volumes:
       - ./metrics_collector/metrics_collector:/usr/src/metrics_collector/metrics_collector
 
-  metrics_storer:
-    build: ./metrics_storer
+  metrics_loader:
+    build: ./metrics_loader
     volumes:
-      - ./metrics_storer/metrics_storer:/usr/src/metrics_storer/metrics_storer
+      - ./metrics_loader/metrics_loader:/usr/src/metrics_loader/metrics_loader

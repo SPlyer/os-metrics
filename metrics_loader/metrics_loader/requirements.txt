@@ -1,0 +1,4 @@
+pony==0.7.10
+kafka-python==1.4.7
+psycopg2-binary
+-e git+https://github.com/serverdensity/python-daemon.git@843cb59#egg=daemon
