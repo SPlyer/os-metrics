@@ -1,5 +1,6 @@
 import time
 import json
+import uuid
 import logging
 from dataclasses import dataclass, asdict
 
@@ -18,7 +19,8 @@ class MetricsRecord:
     mem_used_pcts: float
     disk_usage_pcts: float
     machine_id: str
-    time: float
+    timestamp: float
+    metric_id: str
 
 
 class MetricsCollector:
@@ -46,7 +48,8 @@ class MetricsCollector:
             disk_usage_pcts=round(disk_usage_pcts, 2),
             load_avg=round(load_avg_min, 2),
             machine_id=settings.MACHINE_ID,
-            time=round(time.time(), 2))
+            timestamp=round(time.time(), 2),
+            metric_id=str(uuid.uuid4()))
 
     def send_metrics(self) -> None:
             metrics = self.get_metrics()
